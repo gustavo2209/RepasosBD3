@@ -29,7 +29,18 @@ namespace RepasosBD3
 
         private void NotasQry_Load(object sender, EventArgs e)
         {
+            consulta();
+        }
 
+        public void consulta()
+        {
+            SqlDataAdapter da = new SqlDataAdapter("SELECT nombre, nota FROM alumnos2 " +
+                "INNER JOIN notas ON alumnos2.idalumno = notas.idalumno " +
+                "ORDER BY nombre", form1.cn);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            dataGridView1.DataSource = ds.Tables[0];
         }
     }
 }
